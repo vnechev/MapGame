@@ -7,12 +7,19 @@
 //
 
 import Cocoa
+import MapKit
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, MKMapViewDelegate {
 
+    //    MARK: IBOutlets:
+    
+    @IBOutlet weak var questionLbl: NSTextField!
+    @IBOutlet weak var scoreLbl: NSTextField!
+    @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        mapView.delegate = self
         // Do any additional setup after loading the view.
     }
 

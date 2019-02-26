@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.MapKitIBPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +675,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="MapGame" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -703,11 +705,58 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="MapGame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <mapView mapType="satellite" zoomEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" showsCompass="NO" showsZoomControls="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUg-X6-jIw">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="215"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="0Pf-nk-oNQ"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="jVd-eL-5Vy"/>
+                                </connections>
+                            </mapView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VPn-WD-LIJ">
+                                <rect key="frame" x="414" y="230" width="48" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="XkC-pr-xCR"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="dlf-RP-fmg">
+                                    <font key="font" metaFont="system" size="18"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LYJ-Pi-AcM">
+                                <rect key="frame" x="18" y="228" width="113" height="26"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Where is London?" id="AlM-dz-ypn">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="hUg-X6-jIw" firstAttribute="top" secondItem="VPn-WD-LIJ" secondAttribute="bottom" constant="15" id="1dq-SG-tKq"/>
+                            <constraint firstItem="VPn-WD-LIJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LYJ-Pi-AcM" secondAttribute="trailing" constant="20" id="6A7-6t-SuY"/>
+                            <constraint firstAttribute="bottom" secondItem="hUg-X6-jIw" secondAttribute="bottom" id="Ncn-s9-hYQ"/>
+                            <constraint firstItem="VPn-WD-LIJ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="18" id="QUL-nn-bUy"/>
+                            <constraint firstItem="LYJ-Pi-AcM" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="R28-dy-of1"/>
+                            <constraint firstItem="LYJ-Pi-AcM" firstAttribute="centerY" secondItem="VPn-WD-LIJ" secondAttribute="centerY" id="Wwk-TT-wZh"/>
+                            <constraint firstAttribute="trailing" secondItem="VPn-WD-LIJ" secondAttribute="trailing" constant="20" symbolic="YES" id="c4D-Bs-oA9"/>
+                            <constraint firstItem="hUg-X6-jIw" firstAttribute="top" secondItem="LYJ-Pi-AcM" secondAttribute="bottom" constant="13" id="fOv-m4-YO6"/>
+                            <constraint firstAttribute="trailing" secondItem="hUg-X6-jIw" secondAttribute="trailing" id="tef-19-D3N"/>
+                            <constraint firstItem="hUg-X6-jIw" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="vhp-rb-O2S"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="hUg-X6-jIw" id="4TS-9k-gI5"/>
+                        <outlet property="questionLbl" destination="LYJ-Pi-AcM" id="e4V-vn-SPL"/>
+                        <outlet property="scoreLbl" destination="VPn-WD-LIJ" id="Eao-pH-ZKD"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
